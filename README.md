@@ -16,4 +16,7 @@ npm install ./wasm-lib/pkg
 npm run start
 
 npm run dev
+
+npm run build
+npx serve ./build
 ```

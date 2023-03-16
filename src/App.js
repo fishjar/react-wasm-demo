@@ -1,7 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
 import { useEffect, useState } from "react";
-import init, { helloworld, add, fibonacci, greet, print } from "wasm-lib";
+import { helloworld, add, fibonacci, greet, print } from "wasm-lib";
 
 function fibonacciInJs(n) {
   if (n <= 1) return n;
@@ -14,16 +14,12 @@ function App() {
   const [fib, setFib] = useState("");
 
   useEffect(() => {
-    init().then(() => {
-      setHello(helloworld());
-      setAns(add(1, 1));
-      print();
-    });
+    setHello(helloworld());
+    setAns(add(1, 1));
+    print();
   }, []);
 
-  const handleFib = async () => {
-    await init();
-
+  const handleFib = () => {
     const num = 20;
 
     console.time("Fibonnaci in rust");
