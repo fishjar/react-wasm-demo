@@ -53,9 +53,14 @@ extern "C" {
     fn log(s: &str);
 }
 
+macro_rules! console_log {
+    ($($t:tt)*) => (log(&format_args!($($t)*).to_string()))
+}
+
 #[wasm_bindgen]
 pub fn print() {
     log("Log from rust");
+    console_log!("1 + 2 = {:?}", 3);
 }
 
 #[test]
