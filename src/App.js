@@ -1,7 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
 import { useEffect, useState } from "react";
-import init, { add } from "wasm-lib";
+import init, { add, greet } from "wasm-lib";
 
 function App() {
   const [ans, setAns] = useState(0);
@@ -26,6 +26,15 @@ function App() {
           Learn React
         </a>
         <p>1 + 1 = {ans}</p>
+        <p>
+          <button
+            onClick={() => {
+              greet("gabe");
+            }}
+          >
+            alert hello
+          </button>
+        </p>
       </header>
     </div>
   );
