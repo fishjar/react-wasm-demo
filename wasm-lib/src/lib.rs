@@ -1,5 +1,12 @@
 use wasm_bindgen::prelude::*;
 
+#[wasm_bindgen(start)]
+pub fn run() -> Result<(), JsValue> {
+    log("Called by our JS entry point to run the example");
+
+    Ok(())
+}
+
 #[wasm_bindgen]
 pub fn helloworld() -> String {
     String::from("Hello world from Rust!")
