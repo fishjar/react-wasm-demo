@@ -1,7 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import { useEffect, useState } from "react";
+import init, { add } from "wasm-lib";
 
 function App() {
+  const [ans, setAns] = useState(0);
+  useEffect(() => {
+    init().then(() => {
+      setAns(add(1, 1));
+    });
+  }, []);
   return (
     <div className="App">
       <header className="App-header">
@@ -17,6 +25,7 @@ function App() {
         >
           Learn React
         </a>
+        <p>1 + 1 = {ans}</p>
       </header>
     </div>
   );
