@@ -1,7 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
 import { useEffect, useState } from "react";
-import { helloworld, add, fibonacci, greet, print } from "wasm-lib";
+import { helloworld, add, fibonacci, greet, print, fetch_data } from "wasm-lib";
 
 function fibonacciInJs(n) {
   if (n <= 1) return n;
@@ -12,6 +12,7 @@ function App() {
   const [hello, setHello] = useState("");
   const [ans, setAns] = useState(0);
   const [fib, setFib] = useState("");
+  const [input, setInput] = useState("");
 
   useEffect(() => {
     setHello(helloworld());
@@ -31,6 +32,12 @@ function App() {
     console.timeEnd("Fibonnaci in JS");
 
     setFib(`Fib ${num}: ${fibRust}(rust), ${fibJS}(js)`);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const res = await fetch_data(input);
+    console.log("fetch_data res", res);
   };
 
   return (
@@ -63,6 +70,20 @@ function App() {
             alert hello
           </button>
         </p>
+        <div>
+          <form onSubmit={handleSubmit}>
+            <label>
+              fetch:
+              <input
+                value={input}
+                onChange={(e) => {
+                  setInput(e.currentTarget.value);
+                }}
+              />
+            </label>
+            <input type="submit" value="Submit" />
+          </form>
+        </div>
       </header>
     </div>
   );
